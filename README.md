@@ -1,73 +1,58 @@
-# Welcome to your Lovable project
+# 🌍 GeoShield – AI Disaster Early Warning MVP
 
-## Project info
+GeoShield is an **AI-powered disaster early warning system** designed to protect vulnerable communities from floods, landslides, and extreme rainfall.  
+This MVP version demonstrates how **real-time data + AI predictions + interactive maps** can help authorities and citizens make faster, safer decisions.  
 
-**URL**: https://lovable.dev/projects/7e1c4030-8d92-4e5c-8029-2d518c55ce69
+---
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+- **Interactive Dashboard**  
+  Real-time disaster alerts (floods, landslides, heavy rainfall) displayed with animated, clickable cards.  
 
-**Use Lovable**
+- **India Map with Danger Zones**  
+  Interactive map of India powered by **Leaflet.js** and **OpenStreetMap tiles**.  
+  - Color-coded zones: 🟢 Safe, 🟠 Moderate, 🔴 High risk  
+  - Click zones to see details  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7e1c4030-8d92-4e5c-8029-2d518c55ce69) and start prompting.
+- **AI Prediction Placeholder**  
+  Displays 30-minute **forecast risk level** (Low / Moderate / High).  
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Multilingual Support** 🌐  
+  Supports **English**, **हिंदी (Hindi)**, and **தமிழ் (Tamil)** across the entire website with a simple language switcher.  
 
-**Use your preferred IDE**
+- **Alert System Placeholder**  
+  Designed for SMS, WhatsApp, and Email notifications.  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Offline-First Capability** ⚡  
+  Last downloaded alerts remain accessible without internet connectivity.  
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Modern UI/UX** ✨  
+  Built with **React, TailwindCSS, shadcn/ui, and Framer Motion** for a smooth, responsive experience.  
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🛠️ Tech Stack
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- **Frontend:** React + TailwindCSS + shadcn/ui + Framer Motion  
+- **Maps:** Leaflet.js with **OpenStreetMap tiles** (`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`)  
+- **Charts:** Recharts (for risk trend graphs)  
+- **Backend:** Node.js + Express (API placeholders for sensor & AI data)  
+- **Database:** Supabase (storing user alerts, preferences, and sensor data)  
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 📦 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/geoshield.git
+
+# Navigate into the project
+cd geoshield
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/7e1c4030-8d92-4e5c-8029-2d518c55ce69) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
