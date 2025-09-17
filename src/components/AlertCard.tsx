@@ -4,15 +4,19 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/contexts/TranslationContext";
 
 interface AlertCardProps {
   id: string;
   type: "flood" | "landslide" | "rainfall" | "earthquake";
   severity: "low" | "moderate" | "high";
   location: string;
+  locationKey: string;
   time: string;
   description: string;
+  descriptionKey: string;
   affectedAreas: string[];
+  affectedAreasKeys: string[];
   isActive?: boolean;
 }
 
@@ -21,42 +25,42 @@ const alertConfig = {
     icon: "💧",
     color: "text-blue-600",
     bgColor: "bg-blue-50 dark:bg-blue-950/20",
-    name: "Flood Alert"
+    nameKey: "floodAlert"
   },
   landslide: {
     icon: "⛰️",
     color: "text-amber-600",
     bgColor: "bg-amber-50 dark:bg-amber-950/20",
-    name: "Landslide Warning"
+    nameKey: "landslideWarning"
   },
   rainfall: {
     icon: "🌧️",
     color: "text-gray-600",
     bgColor: "bg-gray-50 dark:bg-gray-950/20",
-    name: "Heavy Rainfall"
+    nameKey: "heavyRainfall"
   },
   earthquake: {
     icon: "🔄",
     color: "text-red-600",
     bgColor: "bg-red-50 dark:bg-red-950/20",
-    name: "Seismic Activity"
+    nameKey: "seismicActivity"
   }
 };
 
 const severityConfig = {
   low: {
     badge: "success",
-    text: "Low Risk",
+    textKey: "lowRisk",
     glowClass: "success-glow"
   },
   moderate: {
     badge: "warning",
-    text: "Moderate Risk",
+    textKey: "moderateRisk",
     glowClass: "warning-glow"
   },
   high: {
     badge: "destructive",
-    text: "High Risk",
+    textKey: "highRisk",
     glowClass: "alert-glow"
   }
 };
@@ -64,12 +68,16 @@ const severityConfig = {
 export function AlertCard({ 
   type, 
   severity, 
-  location, 
+  location,
+  locationKey,
   time, 
-  description, 
+  description,
+  descriptionKey,
   affectedAreas,
+  affectedAreasKeys,
   isActive = false 
 }: AlertCardProps) {
+  const { t } = useTranslation();
   const alert = alertConfig[type];
   const severityInfo = severityConfig[severity];
 
@@ -98,11 +106,11 @@ export function AlertCard({
               <div className="text-2xl">{alert.icon}</div>
               <div>
                 <h3 className="font-semibold text-foreground text-base">
-                  {alert.name}
+                  {t(alert.nameKey)}
                 </h3>
                 <div className="flex items-center space-x-2 mt-1">
                   <MapPin className="h-3 w-3 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">{location}</span>
+                  <span className="text-sm text-muted-foreground">{t(locationKey)}</span>
                 </div>
               </div>
             </div>
@@ -110,14 +118,14 @@ export function AlertCard({
               variant={severityInfo.badge as any}
               className="text-xs"
             >
-              {severityInfo.text}
+              {t(severityInfo.textKey)}
             </Badge>
           </div>
         </CardHeader>
 
         <CardContent className="pt-0">
           <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-            {description}
+            {t(descriptionKey)}
           </p>
 
           <div className="space-y-3">
@@ -134,13 +142,13 @@ export function AlertCard({
                   Affected Areas:
                 </h4>
                 <div className="flex flex-wrap gap-1">
-                  {affectedAreas.map((area, index) => (
+                  {affectedAreasKeys.map((areaKey, index) => (
                     <Badge 
                       key={index}
                       variant="secondary" 
                       className="text-xs"
                     >
-                      {area}
+                      {t(areaKey)}
                     </Badge>
                   ))}
                 </div>
@@ -155,7 +163,7 @@ export function AlertCard({
                 className="h-8 text-xs"
               >
                 <Info className="h-3 w-3 mr-1" />
-                Details
+                {t("details")}
               </Button>
               
               {isActive && (
@@ -164,7 +172,7 @@ export function AlertCard({
                   transition={{ duration: 2, repeat: Infinity }}
                 >
                   <Badge variant="destructive" className="text-xs">
-                    🔴 ACTIVE
+                    🔴 {t("active")}
                   </Badge>
                 </motion.div>
               )}

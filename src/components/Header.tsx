@@ -3,6 +3,7 @@ import { Globe, Shield, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "@/contexts/TranslationContext";
 
 type Language = "en" | "hi" | "ta";
 
@@ -19,39 +20,11 @@ const languages: LanguageOption[] = [
 ];
 
 export function Header() {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>("en");
+  const { currentLanguage, setLanguage, t } = useTranslation();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const currentLang = languages.find(lang => lang.code === currentLanguage);
-
-  const translations = {
-    title: {
-      en: "GeoShield",
-      hi: "जियोशील्ड",
-      ta: "ஜியோஷீல்ட்"
-    },
-    subtitle: {
-      en: "AI Disaster Early Warning",
-      hi: "एआई आपदा चेतावनी",
-      ta: "AI பேரிடர் எச்சரிக்கை"
-    },
-    dashboard: {
-      en: "Dashboard",
-      hi: "डैशबोर्ड",
-      ta: "டாஷ்போர்டு"
-    },
-    alerts: {
-      en: "Alerts",
-      hi: "अलर्ट",
-      ta: "எச்சரிக்கைகள்"
-    },
-    map: {
-      en: "Map",
-      hi: "मानचित्र",
-      ta: "வரைபடம்"
-    }
-  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -68,10 +41,10 @@ export function Header() {
           </div>
           <div>
             <h1 className="text-xl font-bold text-foreground">
-              {translations.title[currentLanguage]}
+              {t("title")}
             </h1>
             <p className="text-xs text-muted-foreground">
-              {translations.subtitle[currentLanguage]}
+              {t("subtitle")}
             </p>
           </div>
         </motion.div>
@@ -79,13 +52,13 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
           <a href="#dashboard" className="text-sm font-medium hover:text-primary transition-colors">
-            {translations.dashboard[currentLanguage]}
+            {t("dashboard")}
           </a>
           <a href="#alerts" className="text-sm font-medium hover:text-primary transition-colors">
-            {translations.alerts[currentLanguage]}
+            {t("alerts")}
           </a>
           <a href="#map" className="text-sm font-medium hover:text-primary transition-colors">
-            {translations.map[currentLanguage]}
+            {t("map")}
           </a>
         </nav>
 
@@ -121,7 +94,7 @@ export function Header() {
                         size="sm"
                         className="w-full justify-start"
                         onClick={() => {
-                          setCurrentLanguage(lang.code);
+                          setLanguage(lang.code);
                           setIsLanguageMenuOpen(false);
                         }}
                       >
@@ -167,21 +140,21 @@ export function Header() {
                   className="text-sm font-medium hover:text-primary transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {translations.dashboard[currentLanguage]}
+                  {t("dashboard")}
                 </a>
                 <a 
                   href="#alerts" 
                   className="text-sm font-medium hover:text-primary transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {translations.alerts[currentLanguage]}
+                  {t("alerts")}
                 </a>
                 <a 
                   href="#map" 
                   className="text-sm font-medium hover:text-primary transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {translations.map[currentLanguage]}
+                  {t("map")}
                 </a>
               </div>
             </div>

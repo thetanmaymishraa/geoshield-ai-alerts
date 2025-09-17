@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/contexts/TranslationContext";
 
 interface PredictionData {
   timeframe: string;
@@ -42,6 +43,7 @@ const riskConfig = {
 };
 
 export function AIPredictor() {
+  const { t } = useTranslation();
   const riskInfo = riskConfig[mockPrediction.riskLevel];
 
   return (
@@ -56,7 +58,7 @@ export function AIPredictor() {
             <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary-glow">
               <Brain className="h-5 w-5 text-white" />
             </div>
-            <span>AI Prediction Engine</span>
+            <span>{t("aiPredictionEngine")}</span>
           </CardTitle>
         </CardHeader>
 
@@ -67,7 +69,7 @@ export function AIPredictor() {
               <div className="flex items-center space-x-2">
                 <Clock className="h-4 w-4 text-muted-foreground" />
                 <span className="text-sm text-muted-foreground">
-                  {mockPrediction.timeframe}
+                  {t("next30Minutes")}
                 </span>
               </div>
               <Badge variant={riskInfo.badge as any} className="text-xs">
@@ -78,9 +80,9 @@ export function AIPredictor() {
             {/* Risk Level Indicator */}
             <div className={`p-4 rounded-lg ${riskInfo.bgColor} border`}>
               <div className="flex items-center justify-between mb-2">
-                <span className="font-medium text-foreground">Risk Assessment</span>
+                <span className="font-medium text-foreground">{t("riskAssessment")}</span>
                 <span className={`font-bold ${riskInfo.color}`}>
-                  {mockPrediction.riskLevel.charAt(0).toUpperCase() + mockPrediction.riskLevel.slice(1)}
+                  {t(`${mockPrediction.riskLevel}Risk`)}
                 </span>
               </div>
               <Progress 
@@ -93,7 +95,7 @@ export function AIPredictor() {
           {/* Confidence Level */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Confidence Level</span>
+              <span className="text-sm font-medium">{t("confidenceLevel")}</span>
               <span className="text-sm font-bold">{mockPrediction.confidence}%</span>
             </div>
             <Progress value={mockPrediction.confidence} className="h-2" />
@@ -103,7 +105,7 @@ export function AIPredictor() {
           <div className="space-y-3">
             <h4 className="text-sm font-medium flex items-center space-x-2">
               <Activity className="h-4 w-4" />
-              <span>Key Factors</span>
+              <span>{t("keyFactors")}</span>
             </h4>
             <div className="space-y-2">
               {mockPrediction.factors.map((factor, index) => (
